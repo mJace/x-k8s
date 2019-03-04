@@ -28,7 +28,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ---
-nfd_version: "v0.1.0"
+nfd_version: "v0.3.0"
 nfd_dir: "/opt/nfd"
 nfd_repo: "http://github.com/kubernetes-incubator/node-feature-discovery"
 nfd_branch: "680f55d07bd8940174ff9c7be2807108ce26d00a"

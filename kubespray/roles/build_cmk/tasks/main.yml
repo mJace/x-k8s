@@ -46,6 +46,13 @@
       recursive: no
       force: yes
 
-  - name: Build cmk image
-    make:
-      chdir: "{{ cmk_dir }}"
+  - name: Pip install docker-py
+    pip:
+      name: docker-py
+
+  - name: Pull CMK v1.3.1 image
+    docker_image:
+      name: mjace/cmk:v1.3.1
+    retries: 5
+    register: reg
+    until: reg | success

@@ -51,18 +51,9 @@
       dest: "{{ nfd_dir }}/Makefile"
       src: short_makefile
 
-#  - name: Configure proxy in Docker build (if applicable)
-#    template:
-#      dest: "{{ nfd_dir }}/Makefile"
-#      src: proxy_makefile
-#    when: '"http_proxy" in calc_proxy_env or "https_proxy" in calc_proxy_env'
-
-  - name: Build nfd image
-    make:
-      chdir: "{{ nfd_dir }}"
-      params:
-        VERSION: "{{ nfd_version }}"
-        DOCKER_IMAGE_NAME: nfd
-    register: reg
+  - name: Pull NFD v0.3.0 image
+    docker_image:
+      name: mjace/nfd:v0.3.0
     retries: 5
+    register: reg
     until: reg | success
