@@ -1,0 +1,36 @@
+---
+- name: Check go version
+  tasks:
+   - command: go version | rev | cut -d ' ' -f2 | rev | sed 's/go//'
+     register: go_version
+
+- name: Remove old golang
+  apt:
+    name: golang-go
+    state: absent
+  when: go_version < 1.10
+
+- name: Delete old go file
+  file:
+    state: absent
+    path: "/usr/local/go"
+
+- name: Un-tar golang v1.10
+  unarchive:
+    src: golang_url
+    dest: /usr/local
+  when: go_version < 1.10
+
+- name: Set up go envrionment
+  environment:
+    GOROOT: '/usr/local/go'
+    GOPATH: '$HOME/go'
+    PATH: 'export PATH=$GOPATH/bin:$GOROOT/bin:$PATH'
+  when: go_version < 1.10
+
+- name: Get version again
+  tasks:
+    - command: go version | rev | cut -d ' ' -f2 | rev | sed 's/go//'
+      register: go_version
+    - fail:
+      when: go_version < 1.10
