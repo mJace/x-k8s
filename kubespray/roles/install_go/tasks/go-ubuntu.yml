@@ -34,3 +34,9 @@
   - name: print version
     debug: 
       var: go_version.stdout_lines
+
+  - name: Copy go dir.
+    command: cp -r /usr/lib/{{ item }} /usr/local
+    with_items: 
+      - "go"
+      - "go-1.12"

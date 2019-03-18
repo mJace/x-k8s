@@ -42,6 +42,7 @@ extraVarPath = basePath+'/kubespray/extraVars.yml'
 resetPath = basePath+'/kubespray/reset.yml'
 
 def install():
+    global inventoryPath
     if '--i' in cliArg and cliArg['--i']:
         inventoryPath = './'+cliArg['--i']
     mycli = getattr(__import__("ansible.cli.playbook", fromlist=['PlaybookCLI']), 'PlaybookCLI')
@@ -55,6 +56,7 @@ def install():
     return exitCode
 
 def reset():
+    global inventoryPath
     if '--i' in cliArg and cliArg['--i']:
         inventoryPath = './'+cliArg['--i']
     mycli = getattr(__import__("ansible.cli.playbook", fromlist=['PlaybookCLI']), 'PlaybookCLI')
