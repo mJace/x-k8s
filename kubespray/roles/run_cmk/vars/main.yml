@@ -35,7 +35,7 @@
 cmk_dir: "/opt/cmk"
 kube_create: "kubectl create -f"
 kubeconfig: "/etc/kubernetes/admin.conf"
-cmk_img: "cmk:v1.3.0"
+cmk_img: "mjace/cmk:v1.3.1"
 num_dp_cores: 1 
 num_cp_cores: 1
 

@@ -39,7 +39,7 @@
                 }
               }
             ],
-            "image": "nfd:v0.1.0",
+            "image": "mjace/nfd:v0.3.0",
             "name": "node-feature-discovery",
             "ports": [
               {
