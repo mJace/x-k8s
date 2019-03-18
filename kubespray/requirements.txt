@@ -3,4 +3,3 @@ jinja2>=2.9.6
 netaddr
 pbr>=1.6
 hvac
-docopt==0.6.2

@@ -1,0 +1,6 @@
+# Helm deployment
+helm_enabled: true
+
+# Multus deployment
+kube_network_plugin: flannel
+kube_network_plugin_multus: true
