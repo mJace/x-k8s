@@ -20,7 +20,7 @@
 
   - name: Install new go-lang
     apt:
-      name: golang-go
+      name: golang-go=2:1.12~1longsleep1+xenial
 
   - name: print result
     debug: 
