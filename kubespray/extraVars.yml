@@ -5,8 +5,10 @@ helm_enabled: true
 kube_network_plugin: flannel
 kube_network_plugin_multus: true
 
+## SRIOV Support
+sriov_enabled : true
+
 ## Enable basic auth
 # kube_basic_auth: true
 ## User defined api password
 # kube_api_pwd: xk8suser
-
