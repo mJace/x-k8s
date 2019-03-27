@@ -12,3 +12,7 @@ sriov_enabled : true
 # kube_basic_auth: true
 ## User defined api password
 # kube_api_pwd: xk8suser
+
+## Change default NodePort range 
+# kube_apiserver_node_port_range: "9000-32767"
+
