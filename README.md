@@ -1,6 +1,7 @@
 # X-K8S - Deploy a Kubernetes Cluster for 5G NFV Cloud
 
-X-K8S leverags plugins for the better NFV performance in 5G use senario, like CMK (Cpu Manager for Kubernetes), NFD (Node Feature Discovery), intel's userspace-cni-network-plugin, etc.  
+X-K8S leverags plugins for the better NFV performance in 5G use senario, like CMK (Cpu Manager for Kubernetes),  
+NFD (Node Feature Discovery), intel's userspace-cni-network-plugin, etc.  
 And based on the kubespray v2.8.0 as its deploy tool.  
 
 For the detail deploy instruction, check the kubespray's [readme](https://github.com/mJace/x-k8s/blob/develop/kubespray/README.md).  
@@ -15,18 +16,57 @@ For the detail deploy instruction, check the kubespray's [readme](https://github
 |NFD            |v0.3.0         |
 |Multus         |v3.1           |
 |Flannel        |v0.10.0        |
-|Flannel-Cni    |v0.3.0         |
+|Flannel-CNI    |v0.3.0         |
+|SRIOV-CNI      |v1.0.0         |
+|SRIOV-Device Plugin |v2.0      | 
 
-## Requirement
+## Deploy Node Requirement
 
 1. Python3  
 2. pip3  
 
 ## Usage  
 
-### Install x-k8s  
+### 1. Prepare your Cluster Node.  
+1. Disable and delete swap on **all of your nodes**.  
+2. If you want to enable sriov support on your kubernetes cluster.  
+    a. Create VF on **all of your nodes**.  
+    b. Create `/etc/pcidp/config.json` **on each node** base on your SRIOV NIC bus address.  
+    You can use `lshw -class network -businfo` to check the bus address of root device.  
+    For example, your config.json should look like...    
 
-1. Install requirement.
+```
+{
+    "resourceList":
+    [
+        {
+            "resourceName": "sriov_net_A",
+            "rootDevices": ["02:00.0", "02:00.2"],
+            "sriovMode": true,
+            "deviceType": "netdevice"
+        },
+        {
+            "resourceName": "sriov_net_B",
+            "rootDevices": ["02:00.1", "02:00.3"],
+            "sriovMode": true,
+            "deviceType": "vfio"
+        }
+    ]
+}
+```
+Go check [SRIOV manual](https://github.com/mJace/x-k8s/blob/develop/docs/sriov.md) for more information.  
+  
+3. Enable root account and allow root remote login for **each node**.   
+4. Set password free login for root of deploy node **on each node**    
+```bash=
+# at root of deploy node
+ssh-copy-id <node1_ip>
+```
+
+
+### 2. Install x-k8s  
+**On Deploy Node**  
+1. Install requirement.  
 
     ```=bash
     cd x-k8s
@@ -35,11 +75,30 @@ For the detail deploy instruction, check the kubespray's [readme](https://github
 
 2. Edit hosts.ini in `/x-k8s/kubespray/inventory/mycluster/hosts.ini`  
 
-3. Enable root on nodes, and setup no-password login for deploy node.
+3. Edit /x-k8s/kubespray/extraVar.yml  
+```yaml=
 
-4. Disable swap on nodes.  
+## Helm deployment 
+helm_enabled: true
 
-5. Deploy  
+## Multus deployment
+kube_network_plugin: flannel
+kube_network_plugin_multus: true
+
+## SRIOV Support
+## Only set to true when you know what you are doing.
+sriov_enabled : false 
+
+## Enable basic auth
+# kube_basic_auth: true
+## User defined api password
+# kube_api_pwd: xk8suser
+
+## Change default NodePort range 
+# kube_apiserver_node_port_range: "9000-32767"
+```
+
+4. Deploy  
 
    ```=bash
    su -
