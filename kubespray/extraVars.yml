@@ -6,7 +6,7 @@ kube_network_plugin: flannel
 kube_network_plugin_multus: true
 
 ## SRIOV Support
-sriov_enabled : true
+# sriov_enabled : true
 
 ## Enable basic auth
 # kube_basic_auth: true

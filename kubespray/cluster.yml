@@ -117,7 +117,7 @@
   any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
   roles:
     - build_nfd
-    - {role: build_sriov, when: "sriov_enabled"}
+    - {role: build_sriov, when: "sriov_enabled |  default(false) "}
 
 - hosts: kube-master
   any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
@@ -153,5 +153,5 @@
   roles:
     - run_nfd
     - run_cmk
-    - {role: run_sriov, when: "sriov_enabled"}
+    - {role: run_sriov, when: "sriov_enabled |  default(false) "}
 
