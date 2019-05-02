@@ -22,6 +22,10 @@
     apt:
       name: golang-go=2:1.12~1longsleep1+xenial
 
+  - name: Install glide
+    apt:
+      name: golang-glide
+
   - name: print result
     debug: 
       var: result.stdout_lines

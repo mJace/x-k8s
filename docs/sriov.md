@@ -140,23 +140,23 @@ root@node1:~# kubectl get node node2 -o json | jq .status.capacity
     apiVersion: "k8s.cni.cncf.io/v1"
     kind: NetworkAttachmentDefinition
     metadata:
-    name: sriov-net-a
-    annotations:
+      name: sriov-net-a
+      annotations:
         k8s.v1.cni.cncf.io/resourceName: intel.com/sriov_net_A
     spec:
-    config: '{
-    "type": "sriov",
-    "vlan": 1000,
-    "ipam": {
+      config: '{
+      "type": "sriov",
+      "vlan": 1000,
+      "ipam": {
         "type": "host-local",
         "subnet": "10.56.217.0/24",
         "rangeStart": "10.56.217.171",
         "rangeEnd": "10.56.217.181",
         "routes": [{
-        "dst": "0.0.0.0/0"
+          "dst": "0.0.0.0/0"
         }],
         "gateway": "10.56.217.1"
-    }
+      }
     }'
     ```
 
@@ -167,22 +167,22 @@ root@node1:~# kubectl get node node2 -o json | jq .status.capacity
     apiVersion: v1
     kind: Pod
     metadata:
-    name: testpod1
-    annotations:
+      name: testpod1
+      annotations:
         k8s.v1.cni.cncf.io/networks: sriov-net-a
     spec:
-    nodeSelector:
+      nodeSelector:
         kubernetes.io/hostname: node2
-    containers:
-    - name: appcntr1
+      containers:
+      - name: appcntr1
         image: ubuntu
         imagePullPolicy: IfNotPresent
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "while true; do sleep 300000; done;" ]
         resources:
-        requests:
+          requests:
             intel.com/sriov_net_A: '1'
-        limits:
+          limits:
             intel.com/sriov_net_A: '1'
     ```
 
