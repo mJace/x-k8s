@@ -29,7 +29,7 @@ For the detail deploy instruction, check the kubespray's [readme](https://github
 
 |  Package   |    version          |
 |------------|---------------------|
-|  Supported Os | Ubuntu 18.04 LTS |
+|  Supported Os | Ubuntu 18.04 LTS Server |
 
 
 ## Usage  
