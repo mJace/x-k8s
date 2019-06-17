@@ -7,7 +7,12 @@
   template:
     dest: "{{ kube_config_dir }}/crdnetwork.yml"
     src: "crdnetwork.yml"
-  
+
+- name: delete old CRD 
+  command: "kubectl delete crd network-attachment-definitions.k8s.cni.cncf.io"
+  environment: 
+    KUBECONFIG: "{{ kubeconfig }}"
+
 - name: Apply CRD
   command: "{{ kube_create }} {{ kube_config_dir }}/crdnetwork.yml"
   environment:

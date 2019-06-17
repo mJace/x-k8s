@@ -25,6 +25,13 @@ For the detail deploy instruction, check the kubespray's [readme](https://github
 1. Python3  
 2. pip3  
 
+## Master/Minion Node Requirement
+
+|  Package   |    version          |
+|------------|---------------------|
+|  Supported Os | Ubuntu 18.04 LTS Server |
+
+
 ## Usage  
 
 ### 1. Prepare your Cluster Node.  
