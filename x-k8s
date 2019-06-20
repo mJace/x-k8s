@@ -92,5 +92,5 @@ def main():
 
 
 if __name__ == "__main__":
-    cliArg = docopt(__doc__, version='v1.0.1')
+    cliArg = docopt(__doc__, version='v1.1.1')
     main()
