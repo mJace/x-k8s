@@ -14,7 +14,7 @@ For the detail deploy instruction, check the kubespray's [readme](https://github
 |Docker         |v18.06.1-ce    |
 |CMK            |v1.3.1         |
 |NFD            |v0.3.0         |
-|Multus         |v3.1           |
+|Multus         |v3.2           |
 |Flannel        |v0.10.0        |
 |Flannel-CNI    |v0.3.0         |
 |SRIOV-CNI      |v1.0.0         |
