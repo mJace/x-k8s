@@ -1,6 +1,6 @@
 # X-K8S - Deploy a Kubernetes Cluster for 5G NFV Cloud
 
-X-K8S leverags plugins for the better NFV performance in 5G use senario, like CMK (Cpu Manager for Kubernetes),  
+X-K8S leverages plugins for the better NFV performance in 5G use senario, like CMK (Cpu Manager for Kubernetes),  
 NFD (Node Feature Discovery), intel's userspace-cni-network-plugin, etc.  
 And based on the kubespray v2.8.0 as its deploy tool.  
 
