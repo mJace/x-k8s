@@ -6,6 +6,7 @@
 
 https://github.com/ITRI-ICL-Peregrine/x-k8s
 
+Please check there for the latest release/version.
 ---
 
 X-K8S leverages plugins for the better NFV performance in 5G use senario, like CMK (Cpu Manager for Kubernetes),  
